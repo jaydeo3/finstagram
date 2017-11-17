@@ -45,7 +45,7 @@ get '/' do
             text: "lunchtime! ;)"
         }]
     }
-[@post_shark, @post_whale, @post_marlin].to_s
-erb :index
+    @posts = [@post_shark, @post_whale, @post_marlin]
+    erb :index
 end
 
