@@ -5,22 +5,22 @@
 <% @posts.each do |post| %>
     <article class="post">
         <div class="user-info">
-            <img src="<%= post[:avatar_url] %>" alt="<%= post[:username] %>">
-            <h2><%= post[:username] %></h2>
-            <h3><%= post[:humanized_time_ago] %></h3>
+            <img src="<%= post.user.avatar_url %>" alt="<%= post.user.username %>">
+            <h2><%= post.user.username %></h2>
+            <h3><%= post.humanized_time_ago %></h3>
         </div>
         <a class="photo" href="#">
-            <img src="<%= post[:photo_url] %>" alt="post from <%= post[:username] %>">
+            <img src="<%= post.photo_url %>" alt="post from <%= post.user.username %>">
         </a>
         <div class="actions">
-            <%= post[:like_count] %> likes
-            <span class="comment-count"><%=post[:comment_count]%></span>
+            <%= post.like_count %> likes
+            <span class="comment-count"><%= post.comment_count %></span>
         </div>
         <ul class="comments">
-            <% post[:comments].each do |comment| %>
+            <% post.comments.each do |comment| %>
             <li>
                 <p>
-                    <%= comment[:username] %>: <%= comment[:text] %>
+                    <%= comment.user.username %>: <%= comment.text %>
                 </p>
             </li>
         <%end %>
@@ -29,22 +29,22 @@
 
 <article class="post">
     <div class="user-info">
-        <img src="<%= post[:avatar_url] %>" alt="<%= post[:username] %>">
-        <h2><%= post[:username] %></h2>
-        <h3><%= post[:humanized_time_ago]%></h3>
+        <img src="<%= post.user.avatar_url %>" alt="<%= post.user.username %>">
+        <h2><%= post.user.username %></h2>
+        <h3><%= post.humanized_time_ago %></h3>
     </div>
     <a class="photo" href="#">
-        <img src="<%= post[:photo_url] %>" alt="post from <%= post[:username] %>">
+        <img src="<%= post.photo_url %>" alt="post from <%= post.user.username %>">
     </a>
     <div_class="actions">
-        <%= post[:like_count] %> likes
-        <span class="comment-count"><%= post[:comment_count] %> comment</span>
+        <%= post.like_count %> likes
+        <span class="comment-count"><%= post.comment_count %> comment</span>
     </div>
     <ul class="comments">
-    <% post[:comments].each do |comment| %>
+        <<% post.comments.each do |comment| %>
         <li>
             <p>
-                <%= comment[:username] %>: <%= comment[:text] %>
+                <%= comment.user.username %>: <%= comment.text %>
             </p>
         </li>
     <% end %>
@@ -53,22 +53,22 @@
 </article>
 <article class="post">
     <div class="user-info">
-        <img src="<%= post[:avatar_url] %>" alt="<%= post[:username] %>">
-        <h2><%= post[:username] %></h2>
-        <h3><%= post[:humanized_time_ago] %></h3>
+        <img src="<%= post.user.avatar_url %>" alt="<%= post.user.username %>">
+        <h2><%= post.user.username %></h2>
+        <h3><%= post.humanized_time_ago %></h3>
     </div>
     <a class="photo" href="#">
-        <img src="<%= post[:photo_url] %>" alt="post from <%= post[:username] %>">
+        <img src="<%= post.photo_url %>" alt="post from <%= post.user.username %>">
     </a>
     <div class="actions">
-        <%= post[:like_count] %> likes
-        <span class="comment-count"><%= post[:comment_count] %> comment</span>
+        <%= post.like_count %> likes
+        <span class="comment-count"><%= post.comment_count %> comment</span>
     </div>
     <ul class="comments">
-    <% post[:comments].each do |comment| %>
+        <% post.comments.each do |comment| %>
         <li>
             <p>
-                <%= comment[:username] %>: <%= comment[:text] %>
+                <%= comment.user.username %>: <%= comment.text %>
             <a href="http://www.google.ca">google me</a>
             </p>
         </li>
