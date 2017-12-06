@@ -4,6 +4,45 @@ helpers do
     end
 end
 
+post '/comments' do
+    # points values from params to variables
+    text = params[:text]
+    post_id = params[:post_id]
+    
+    # instantiate a comment with those values and assignt the comment to the current user
+    comment = Comment.new({ text: text, post_id: post_id, user_id: current_user.id})
+    
+    # save the comment
+    comment.save
+    
+    # 'redirect' back to whereve we came from
+    redirect(back)
+end
+
+get '/posts/:id' do
+    @post = Post.find(params[:id])  # find the post with the ID from the URL
+    erb(:"posts/show")              # render app/views/posts/show.erb
+end
+
+get '/posts/new' do
+    @post = Post.new
+    erb(:"posts/new")
+end
+
+post '/posts' do
+    photo_url = params[:photo_url]
+
+    # instantiate new Post
+    @post = Post.new({ photo_url: photo_url, user_id: current_user.id })
+    
+    # if @post validates, save
+    if @post.save
+        redirect(to('/'))
+    else
+      erb(:"posts/new")
+    end
+end
+
 get '/' do
     @posts = Post.order(created_at: :desc)
     erb(:index)
