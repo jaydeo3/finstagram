@@ -4,18 +4,29 @@ helpers do
     end
 end
 
+post '/likes' do
+    post_id = params[:post_id]
+    
+    like = Like.new({ post_id: post_id, user_id: current_user.id})
+    like.save
+    
+    redirect(back)
+end
+
+delete '/likes/:id' do
+    like = Like.find(params[:id])
+    like.destroy
+    redirect(back)
+end
+
+
 post '/comments' do
-    # points values from params to variables
     text = params[:text]
     post_id = params[:post_id]
     
-    # instantiate a comment with those values and assignt the comment to the current user
     comment = Comment.new({ text: text, post_id: post_id, user_id: current_user.id})
-    
-    # save the comment
     comment.save
     
-    # 'redirect' back to whereve we came from
     redirect(back)
 end
 
